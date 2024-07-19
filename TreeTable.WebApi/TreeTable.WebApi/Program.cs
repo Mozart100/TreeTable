@@ -1,3 +1,4 @@
+using TreeTable.WebApi.Services;
 using TreeTable.WebApi.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.CustomServiceRegistration(builder.Configuration);
 
 
-
+builder.Services.AddTransient<IPeopleService, PeopleService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
