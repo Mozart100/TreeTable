@@ -44,6 +44,52 @@
 
         public async Task<Tree> CreateFakePeopleTree()
         {
+            var regionTag = GetRegionTag();
+            var color = GetColorTag();
+
+            var tree = new Tree();
+            tree.Roots.Add(regionTag);
+            tree.Roots.Add(color);
+
+
+
+            return tree;
+        }
+
+
+
+        private Node GetColorTag()
+        {
+            var tag = new Node { NodeType = INodeTypes.NodeTag };
+            var tagLabel = new Node { NodeType = INodeTypes.NodeTagLabel };
+            var nahariyaData = new Node { NodeType = INodeTypes.Data };
+            //var akkoData = new Node { NodeType = INodeTypes.Data };
+
+
+            tag.Description = "color";
+            tag.Children.Add(tagLabel);
+
+            tagLabel.Description = "red";
+            tagLabel.Children.Add(nahariyaData);
+            //tagLabel.Children.Add(akkoData);
+
+            nahariyaData.Description = "Nahariya";
+            nahariyaData.Stats.Add(new Stats { Value = 1 });
+            nahariyaData.Stats.Add(new Stats { Value = 2 });
+            nahariyaData.Stats.Add(new Stats { Value = 3 });
+
+
+            //akkoData.Description = "Akko";
+            //akkoData.Stats.Add(new Stats { Value = 3 });
+            //akkoData.Stats.Add(new Stats { Value = 4 });
+            //akkoData.Stats.Add(new Stats { Value = 5 });
+
+
+            return tag;
+        }
+
+        private Node GetRegionTag()
+        {
             var tag = new Node { NodeType = INodeTypes.NodeTag };
             var tagLabel = new Node { NodeType = INodeTypes.NodeTagLabel };
             var nahariyaData = new Node { NodeType = INodeTypes.Data };
@@ -69,13 +115,7 @@
             akkoData.Stats.Add(new Stats { Value = 5 });
 
 
-
-            var tree = new Tree();
-            tree.Roots.Add(tag);
-
-
-
-            return tree;
+            return tag;
         }
     }
 }
