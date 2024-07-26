@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using TreeTable.WebApi.Services;
 using TreeTable.WebApi.Startup;
+
+ const string CorsPolicy = "CorsPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.NativeServiceRegistration();
 //builder.Services.CustomServiceRegistration(builder.Configuration);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(CorsPolicy, builder => builder.WithOrigins("http://localhost:4200").
+                                                       AllowAnyMethod().
+                                                       AllowAnyHeader().
+                                                       AllowCredentials());
+});
 
 
 builder.Services.AddTransient<IPeopleService, PeopleService>();
@@ -25,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(CorsPolicy);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
