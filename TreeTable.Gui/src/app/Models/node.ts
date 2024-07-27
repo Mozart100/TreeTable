@@ -7,6 +7,7 @@ export interface Node {
     description: string;
     stats: Stats[];
     children: Node[];
+    IsSelected:boolean;
 }
 
 export interface Tree {
