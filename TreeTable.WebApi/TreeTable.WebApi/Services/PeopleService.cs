@@ -26,7 +26,9 @@
 
         public List<Stats> Stats { get; set; } = new List<Stats>();
 
-        public List<Node> Children { get; set; } = new List<Node>();    
+        public List<Node> Children { get; set; } = new List<Node>();
+
+        public bool IsSelected { get; set; } = false;
     }
 
     public interface IPeopleService
@@ -102,6 +104,10 @@
             tagLabel.Description = "North";
             tagLabel.Children.Add(nahariyaData);
             tagLabel.Children.Add(akkoData);
+            tagLabel.Stats.Add(new Stats { Value = 10 });
+            tagLabel.Stats.Add(new Stats { Value = 20 });
+            tagLabel.Stats.Add(new Stats { Value = 30 });
+
 
             nahariyaData.Description = "Nahariya";
             nahariyaData.Stats.Add(new Stats { Value = 1 });
