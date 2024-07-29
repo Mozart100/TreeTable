@@ -1,0 +1,89 @@
+<!--<table>-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th></th>-->
+<!--    <th *ngFor="let col of columns">{{col}}</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tree-node [node]="n" *ngFor="let n of nodes"></tree-node>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th *ngFor="let col of columns">{{col}}</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <ng-container *ngFor="let node1 of nodes">
+
+    <ng-container *ngIf="node1.stats.length > 0">
+      <tr>
+        <td class="collapsible" (click)="toggleNode(node1)">
+          <span class="collapse-sign">{{node1.expanded ? '-' : '+'}}</span>
+          {{node1.description}}
+        </td>
+        <td *ngFor="let node1Stat of node1.stats">{{node1Stat.value}}</td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="node1.children.length > 0 && node1.expanded">
+
+      <ng-container *ngFor="let node2 of node1.children">
+
+        <ng-container *ngIf="node2.stats.length > 0">
+          <tr>
+            <td class="ind1 collapsible" (click)="toggleNode(node2)">
+              <span class="collapse-sign">{{node2.expanded ? '-' : '+'}}</span>
+              {{node1.description}}:{{node2.description}}
+            </td>
+            <td *ngFor="let node2stat of node2.stats">{{node2stat.value}}</td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngIf="node2.children.length > 0 && node2.expanded">
+          <ng-container *ngFor="let node3 of node2.children">
+
+            <ng-container *ngIf="node3.stats.length > 0">
+              <tr>
+                <td class="ind2 collapsible" (click)="toggleNode(node3)">
+                  <span class="collapse-sign">{{node3.expanded ? '-' : '+'}}</span>
+                  {{node2.description}}:{{node3.description}}
+                </td>
+                <td *ngFor="let node3stat of node3.stats">{{node3stat.value}}</td>
+              </tr>
+            </ng-container>
+
+            <ng-container *ngIf="node3.children.length > 0 && node3.expanded">
+
+              <ng-container *ngFor="let node4 of node3.children">
+
+                <ng-container *ngIf="node4.stats.length > 0">
+                  <tr>
+                    <td class="ind3">
+                      <span class="collapse-sign">&nbsp;</span>
+                      {{node3.description}}:{{node4.description}}
+                    </td>
+                    <td *ngFor="let node4stat of node4.stats">{{node4stat.value}}</td>
+                  </tr>
+                </ng-container>
+
+              </ng-container>
+
+            </ng-container>
+
+          </ng-container>
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+
+  </ng-container>
+
+  </tbody>
+</table>

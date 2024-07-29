@@ -1,0 +1,10 @@
+<ng-container *ngIf="node.stats.length > 0">
+  <tr>
+    <td>{{parentNode?.description}} : {{node.description}}</td>
+    <td *ngFor="let stat of node.stats">{{stat.value}}</td>
+  </tr>
+</ng-container>
+
+<ng-container *ngIf="node.children.length > 0">
+  <tree-node *ngFor="let childNode of node.children" [node]="childNode" [parentNode]="node"></tree-node>
+</ng-container>

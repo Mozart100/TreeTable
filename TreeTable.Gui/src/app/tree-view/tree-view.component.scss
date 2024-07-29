@@ -1,0 +1,28 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.ind1 {
+  padding-left: 2rem;
+}
+
+.ind2 {
+  padding-left: 3rem;
+}
+
+.ind3 {
+  padding-left: 4rem;
+}
+
+.collapsible {
+  cursor: pointer;
+}
+
+.collapse-sign {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  color: black;
+}

@@ -1,15 +1,16 @@
 export interface Stats {
-    value: number;
+  value: number;
 }
 
 export interface Node {
-    nodeType: string; // Tag, Tag:Label,Tag, Tag:Label , Data (component)
-    description: string;
-    stats: Stats[];
-    children: Node[];
-    IsSelected:boolean;
+  nodeType: string; // Tag, Tag:Label,Tag, Tag:Label , Data (component)
+  description: string;
+  stats: Stats[];
+  isSelected: boolean
+  children: Node[];
+  expanded?: boolean
 }
 
 export interface Tree {
-    roots: Node[];
+  roots: Node[];
 }
