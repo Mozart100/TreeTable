@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { firstValueFrom, Observable, tap } from 'rxjs'
 import { Tree } from "../Models/node"
 
 @Injectable({
@@ -10,7 +9,7 @@ export class TreeTableControllerService {
 
   private serverUrl: string = ""
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,) {
     this.serverUrl = "https://localhost:7048/api/TreeTable/regions"
   }
 
@@ -108,8 +107,6 @@ export class TreeTableControllerService {
                       "children": [],
                       "isSelected": false
                     }
-
-
                   ],
                   "isSelected": false
                 },
@@ -127,7 +124,59 @@ export class TreeTableControllerService {
                       "value": 5
                     }
                   ],
-                  "children": [],
+                  "children": [
+                    {
+                      "nodeType": "Data",
+                      "description": "Comp 1",
+                      "stats": [
+                        {
+                          "value": 34
+                        },
+                        {
+                          "value": 35
+                        },
+                        {
+                          "value": 36
+                        }
+                      ],
+                      "children": [],
+                      "isSelected": false
+                    },
+                    {
+                      "nodeType": "Data",
+                      "description": "Comp 2",
+                      "stats": [
+                        {
+                          "value": 54
+                        },
+                        {
+                          "value": 55
+                        },
+                        {
+                          "value": 56
+                        }
+                      ],
+                      "children": [],
+                      "isSelected": false
+                    },
+                    {
+                      "nodeType": "Data",
+                      "description": "Comp 3",
+                      "stats": [
+                        {
+                          "value": 74
+                        },
+                        {
+                          "value": 75
+                        },
+                        {
+                          "value": 76
+                        }
+                      ],
+                      "children": [],
+                      "isSelected": false
+                    }
+                  ],
                   "isSelected": false
                 }
               ],
@@ -185,7 +234,6 @@ export class TreeTableControllerService {
               ],
               "isSelected": false
             }
-
           ],
           "isSelected": false
         },
@@ -264,7 +312,6 @@ export class TreeTableControllerService {
               ],
               "isSelected": false
             }
-
           ],
           "isSelected": false
         }

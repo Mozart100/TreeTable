@@ -1,15 +1,3 @@
-<!--<table>-->
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th></th>-->
-<!--    <th *ngFor="let col of columns">{{col}}</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tree-node [node]="n" *ngFor="let n of nodes"></tree-node>-->
-<!--  </tbody>-->
-<!--</table>-->
-
 <table>
   <thead>
   <tr>
@@ -24,10 +12,17 @@
     <ng-container *ngIf="node1.stats.length > 0">
       <tr>
         <td class="collapsible" (click)="toggleNode(node1)">
-          <span class="collapse-sign">{{node1.expanded ? '-' : '+'}}</span>
-          {{node1.description}}
+          <div class="header-cell">
+            <img class="collapse-sign" [src]="getSignImage(!!node1.expanded)"/>
+            <div>{{node1.description}}</div>
+          </div>
         </td>
-        <td *ngFor="let node1Stat of node1.stats">{{node1Stat.value}}</td>
+        <td>
+          <input type="checkbox" [ngModel]="node1.isSelected" (change)="toggleNodeSelection(node1)"/>
+        </td>
+        <td *ngFor="let node1Stat of node1.stats">
+          <div class="data-cell">{{node1Stat.value}}</div>
+        </td>
       </tr>
     </ng-container>
 
@@ -36,12 +31,19 @@
       <ng-container *ngFor="let node2 of node1.children">
 
         <ng-container *ngIf="node2.stats.length > 0">
-          <tr>
-            <td class="ind1 collapsible" (click)="toggleNode(node2)">
-              <span class="collapse-sign">{{node2.expanded ? '-' : '+'}}</span>
-              {{node1.description}}:{{node2.description}}
+          <tr class="start-row">
+            <td>
+              <div class="header-cell collapsible" (click)="toggleNode(node2)">
+                <img class="collapse-sign" [src]="getSignImage(!!node2.expanded)"/>
+                <div>{{node1.description}}:{{node2.description}}</div>
+              </div>
             </td>
-            <td *ngFor="let node2stat of node2.stats">{{node2stat.value}}</td>
+            <td class="stats-item">
+              <input type="checkbox" [checked]="node2.isSelected" (change)="toggleNodeSelection(node2)"/>
+            </td>
+            <td *ngFor="let node2stat of node2.stats" class="stats-item">
+              <div class="data-cell">{{node2stat.value}}</div>
+            </td>
           </tr>
         </ng-container>
 
@@ -50,11 +52,18 @@
 
             <ng-container *ngIf="node3.stats.length > 0">
               <tr>
-                <td class="ind2 collapsible" (click)="toggleNode(node3)">
-                  <span class="collapse-sign">{{node3.expanded ? '-' : '+'}}</span>
-                  {{node2.description}}:{{node3.description}}
+                <td>
+                  <div class="header-cell item ind1 collapsible" (click)="toggleNode(node3)">
+                    <img class="collapse-sign" [src]="getSignImage(!!node3.expanded)"/>
+                    <div>{{node2.description}}:{{node3.description}}</div>
+                  </div>
                 </td>
-                <td *ngFor="let node3stat of node3.stats">{{node3stat.value}}</td>
+                <td class="stats-item">
+                  <input type="checkbox" [checked]="node3.isSelected" (change)="toggleNodeSelection(node3)"/>
+                </td>
+                <td *ngFor="let node3stat of node3.stats" class="stats-item">
+                  <div class="data-cell">{{node3stat.value}}</div>
+                </td>
               </tr>
             </ng-container>
 
@@ -64,11 +73,19 @@
 
                 <ng-container *ngIf="node4.stats.length > 0">
                   <tr>
-                    <td class="ind3">
-                      <span class="collapse-sign">&nbsp;</span>
-                      {{node3.description}}:{{node4.description}}
+                    <td>
+                      <div class="header-cell item ind2">
+                        <span>&nbsp;&nbsp;</span>
+                        <div>{{node3.description}}:{{node4.description}}</div>
+                      </div>
                     </td>
-                    <td *ngFor="let node4stat of node4.stats">{{node4stat.value}}</td>
+                    <td class="stats-item">
+                      <input type="checkbox" [checked]="node4.isSelected"
+                             (change)="toggleNodeSelection(node4)"/>
+                    </td>
+                    <td *ngFor="let node4stat of node4.stats" class="stats-item">
+                      <div class="data-cell">{{node4stat.value}}</div>
+                    </td>
                   </tr>
                 </ng-container>
 
